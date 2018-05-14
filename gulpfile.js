@@ -9,6 +9,7 @@ global.$={
     sourcemaps  : require('gulp-sourcemaps'),
     prefixer    : require('gulp-autoprefixer'),
     browserSync : require("browser-sync").create(),
+    concat      : require('gulp-concat'),
 
     path:{
         tasks: require('./gulp/config/tasks.js')
@@ -20,6 +21,6 @@ $.path.tasks.forEach(function (taskPath) {
 })
 
 $.gulp.task('default', $.gulp.series(
-    $.gulp.parallel('pug', 'sass'),
+    $.gulp.parallel('pug', 'sass', 'scripts:lib', 'scripts'),
     $.gulp.parallel('watch', 'serve')
 ));

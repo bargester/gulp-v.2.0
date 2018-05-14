@@ -6,8 +6,17 @@ var gulp        = require('gulp'),
     csso        = require('gulp-csso'),
     notify      = require ('gulp-notify'),
     sourcemaps  = require('gulp-sourcemaps'),
-    prefixer    = require('gulp-autoprefixer');
+    prefixer    = require('gulp-autoprefixer'),
+    browserSync = require("browser-sync").create();
 
+
+gulp.task('serve', function () {
+    browserSync.init({
+        server: {
+            baseDir: "./build"
+        }
+    });
+});
 
 gulp.task('pug', function () {
     return gulp.src('src/pug/pages/*.pug')
@@ -15,6 +24,7 @@ gulp.task('pug', function () {
            pretty: true
         }))
         .pipe(gulp.dest('build'))
+        .on('end', browserSync.reload);
 });
 
 gulp.task('sass', function () {
@@ -30,6 +40,9 @@ gulp.task('sass', function () {
         .pipe(csso())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('build/static/css/'))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
 gulp.task('watch', function () {
@@ -39,5 +52,5 @@ gulp.task('watch', function () {
 
 gulp.task('default', gulp.series(
     gulp.parallel('pug', 'sass'),
-    'watch'
+    gulp.parallel('watch', 'serve')
 ));

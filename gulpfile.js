@@ -1,7 +1,9 @@
 'use strict';
 
 var gulp = require('gulp'),
-    pug  = require('gulp-pug');
+    pug  = require('gulp-pug'),
+    sass = require('gulp-sass'),
+    csso  = require('gulp-csso');
 
 gulp.task('pug', function () {
     return gulp.src('src/pug/pages/*.pug')
@@ -9,4 +11,11 @@ gulp.task('pug', function () {
            pretty: true
         }))
         .pipe(gulp.dest('build'))
-})
+});
+
+gulp.task('sass', function () {
+    return gulp.src('src/static/styles/main.scss')
+        .pipe(sass())
+        .pipe(csso())
+        .pipe(gulp.dest('build/static/css/'))
+});

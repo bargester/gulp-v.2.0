@@ -10,6 +10,7 @@ global.$={
     prefixer    : require('gulp-autoprefixer'),
     browserSync : require("browser-sync").create(),
     concat      : require('gulp-concat'),
+    imagemin    : require('gulp-imagemin'),
 
     path:{
         tasks: require('./gulp/config/tasks.js')
@@ -21,6 +22,11 @@ $.path.tasks.forEach(function (taskPath) {
 })
 
 $.gulp.task('default', $.gulp.series(
-    $.gulp.parallel('pug', 'sass', 'scripts:lib', 'scripts'),
+    $.gulp.parallel('pug', 'sass', 'scripts:lib', 'scripts', 'img:dev'),
+    $.gulp.parallel('watch', 'serve')
+));
+
+$.gulp.task('build', $.gulp.series(
+    $.gulp.parallel('pug', 'sass', 'scripts:lib', 'scripts', 'img:build'),
     $.gulp.parallel('watch', 'serve')
 ));

@@ -31,3 +31,13 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('build/static/css/'))
 });
+
+gulp.task('watch', function () {
+    gulp.watch('src/pug/**/*.pug', gulp.series('pug'));
+    gulp.watch('src/static/styles/**/*.scss', gulp.series('sass'))
+});
+
+gulp.task('default', gulp.series(
+    gulp.parallel('pug', 'sass'),
+    'watch'
+));

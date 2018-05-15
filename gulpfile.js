@@ -13,8 +13,6 @@ global.$={
     imagemin    : require('gulp-imagemin'),
     del         : require('del'),
     svgmin      : require('gulp-svgmin'),
-    cheerio      : require('gulp-cheerio'),
-    replace      : require('gulp-replace'),
 
     path:{
         tasks: require('./gulp/config/tasks.js')

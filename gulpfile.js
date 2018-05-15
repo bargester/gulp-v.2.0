@@ -11,6 +11,10 @@ global.$={
     browserSync : require("browser-sync").create(),
     concat      : require('gulp-concat'),
     imagemin    : require('gulp-imagemin'),
+    del         : require('del'),
+    svgmin      : require('gulp-svgmin'),
+    cheerio      : require('gulp-cheerio'),
+    replace      : require('gulp-replace'),
 
     path:{
         tasks: require('./gulp/config/tasks.js')
@@ -22,11 +26,12 @@ $.path.tasks.forEach(function (taskPath) {
 })
 
 $.gulp.task('default', $.gulp.series(
-    $.gulp.parallel('pug', 'sass', 'scripts:lib', 'scripts', 'img:dev'),
+    'clean',
+    $.gulp.parallel('pug:dev', 'sass:dev', 'scripts:lib', 'scripts:build', 'img:dev', 'svg:dev'),
     $.gulp.parallel('watch', 'serve')
 ));
 
 $.gulp.task('build', $.gulp.series(
-    $.gulp.parallel('pug', 'sass', 'scripts:lib', 'scripts', 'img:build'),
-    $.gulp.parallel('watch', 'serve')
+    'clean',
+    $.gulp.parallel('pug:dev', 'sass:build', 'scripts:lib', 'scripts:build', 'img:build', 'svg:build'),
 ));

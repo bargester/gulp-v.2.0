@@ -1,13 +1,13 @@
 {
-  "name": "gulp-v.2.0",
+  "name": "Start",
   "version": "1.0.0",
-  "description": "",
+  "description": "your description",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bargester. Tereniak Vasilii",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.24.4",

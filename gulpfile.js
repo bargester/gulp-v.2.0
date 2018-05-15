@@ -27,11 +27,11 @@ $.path.tasks.forEach(function (taskPath) {
 
 $.gulp.task('default', $.gulp.series(
     'clean',
-    $.gulp.parallel('pug:dev', 'sass:dev', 'scripts:lib', 'scripts:build', 'img:dev', 'svg:dev'),
+    $.gulp.parallel('pug:dev', 'sass:dev', 'scripts:lib', 'scripts:build', 'img:dev', 'svg:dev', 'fonts'),
     $.gulp.parallel('watch', 'serve')
 ));
 
 $.gulp.task('build', $.gulp.series(
     'clean',
-    $.gulp.parallel('pug:dev', 'sass:build', 'scripts:lib', 'scripts:build', 'img:build', 'svg:build'),
+    $.gulp.parallel('pug:dev', 'sass:build', 'scripts:lib', 'scripts:build', 'img:build', 'svg:build', 'fonts'),
 ));

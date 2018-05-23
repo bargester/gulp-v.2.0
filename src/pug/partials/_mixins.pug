@@ -2,6 +2,6 @@ mixin list(items, className)
     ul(class=className)
         each item in items
             li(class=className + '__item')
-                a(class=className + '__link')=item
+        a(class=className + '__link' href="#")=item
 // Вызывается
-    +list(['массив эллементов], 'имя класса')                
+    +list([массив эллементов], 'имя класса')

@@ -1,7 +1,7 @@
 module.exports = function() {
     $.gulp.task('fonts', function ()  {
-        return $.gulp.src('./src/static/fonts/**/*.')
-            .pipe($.gulp.dest('./build/static/fonts/'))
+        return $.gulp.src('src/static/fonts/**')
+            .pipe($.gulp.dest('build/static/fonts/'))
             .pipe($.browserSync.reload({
                 stream: true
             }));
